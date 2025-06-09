@@ -5,7 +5,8 @@ It supports multiple (gacha) games. Auto-updates, and built-in mod loading will 
 
 # Current issues
 
-It has kinda trash code, but I will try to clean them up in the future
+Only support Wuthering Waves and Honkai: Star Rail for noww.
+It has kinda trash code, but I will try to clean them up in the future.
 
 ## Build & Run
 
