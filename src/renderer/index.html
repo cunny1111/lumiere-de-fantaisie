@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière de Fantaisie</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Title Bar -->
+        <div class="title-bar">
+            <div class="title-bar-left">
+                <img src="../../resources/icons/app-icon.png" alt="App Icon" class="app-icon">
+                <span class="app-title">Lumière de Fantaisie</span>
+            </div>
+            <div class="title-bar-controls">
+                <button class="control-btn minimize-btn">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="control-btn maximize-btn">
+                    <i class="fas fa-square"></i>
+                </button>
+                <button class="control-btn close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Welcome Screen -->
+        <div class="welcome-screen" id="welcomeScreen">
+            <div class="welcome-content">
+                <h1 class="welcome-title">Welcome to Lumière de Fantaisie</h1>
+                <p class="welcome-subtitle">Select your games:</p>
+                
+                <div class="game-grid">
+                    <!-- Installed games will be populated here -->
+                    <div class="game-card add-game-card" id="addGameCard">
+                        <div class="add-game-icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <span class="add-game-text">Add Game</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Detail Screen -->
+        <div class="game-screen" id="gameScreen" style="display: none;">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-games">
+                    <!-- Game icons will be populated here -->
+                </div>
+                
+                <div class="sidebar-footer">
+                    <button class="settings-btn" id="settingsBtn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Game Content -->
+            <div class="game-content">
+                <div class="game-background" id="gameBackground"></div>
+                <div class="game-overlay">
+                    <div class="game-info">
+                        <div class="game-header">
+                            <img src="" alt="Game Icon" class="game-icon" id="gameIcon">
+                            <div class="game-meta">
+                                <h1 class="game-title" id="gameTitle">Game Title</h1>
+                                <div class="game-status-badge" id="gameStatus">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Installed</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="game-description" id="gameDescription">
+                            Game description will be loaded here...
+                        </p>
+                        
+                        <div class="game-stats">
+                            <div class="stat">
+                                <span class="stat-label">Version:</span>
+                                <span class="stat-value" id="gameVersion">Unknown</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Size:</span>
+                                <span class="stat-value" id="gameSize">Unknown</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Last Played:</span>
+                                <span class="stat-value" id="gameLastPlayed">Never</span>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons" id="actionButtons">
+                            <!-- Action buttons will be populated here -->
+                        </div>
+                    </div>
+                    
+                    <div class="game-news">
+                        <h3>Latest News</h3>
+                        <div class="news-content" id="newsContent">
+                            Loading news...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <script src="js/game-manager.js"></script>
+    <!-- Settings Modal -->
+    <!-- Settings Modal -->
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content settings-modal">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="modal-close" id="closeSettings">&times;</button>
+            </div>
+            <div class="modal-body settings-body">
+                <div class="settings-sidebar">
+                    <div class="settings-tab active" data-tab="general">
+                        <i class="icon-settings"></i>
+                        <span>General</span>
+                    </div>
+                    <div class="settings-tab" data-tab="about">
+                        <i class="icon-info"></i>
+                        <span>About</span>
+                    </div>
+                </div>
+                
+                <div class="settings-content">
+                    <!-- General Tab -->
+                    <div class="settings-panel active" id="general-panel">
+                        <h3>General Settings</h3>
+                        
+                        <div class="setting-group">
+                            <label>Theme</label>
+                            <select id="themeSelect">
+                                <option value="default">Default</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="autoStartup">
+                                <span class="checkmark"></span>
+                                Auto start at startup
+                            </label>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="autoMinimize">
+                                <span class="checkmark"></span>
+                                Auto minimize to system tray when start game
+                            </label>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="autoUpdate" disabled>
+                                <span class="checkmark"></span>
+                                Check for updates automatically (Coming soon)
+                            </label>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label>When closing launcher</label>
+                            <select id="closeAction">
+                                <option value="minimize">Minimize to system tray</option>
+                                <option value="exit">Exit launcher</option>
+                            </select>
+                        </div>
+                </div>
+                
+                <!-- About Tab -->
+                <div class="settings-panel" id="about-panel">
+                    <h3>About Lumière de Fantaisie</h3>
+                    
+                    <div class="about-info">
+                        <div class="app-info">
+                            <img src="../../resources/icons/app-icon.png" alt="App Icon" class="app-icon-large">
+                            <div class="app-details">
+                                <h4>Lumière de Fantaisie</h4>
+                                <p class="version">Version 0.1.0 / Miyuki.DEV</p>
+                                <p class="description">A beautiful game launcher for your favorite games</p>
+                            </div>
+                        </div>
+                        
+                        <div class="about-actions">
+                            <button class="btn btn-outline disabled" id="viewUpdateLog" data-tooltip="Tính năng này chưa được phát hành">
+                                <i class="icon-history"></i>
+                                View Update Log
+                            </button>
+                            
+                            <button class="btn btn-outline disabled" id="checkUpdates" data-tooltip="Tính năng này chưa được phát hành">
+                                <i class="icon-download"></i>
+                                Check for Latest Version
+                            </button>
+                            
+                            <button class="btn btn-outline" id="termsOfService">
+                                <i class="icon-document"></i>
+                                Terms of Service
+                            </button>
+                            
+                            <button class="btn btn-outline" id="privacyPolicy">
+                                <i class="icon-shield"></i>
+                                Privacy Policy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Game Modal -->
+<div class="modal" id="addGameModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Add Game</h2>
+            <button class="modal-close" id="closeAddGame">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="game-selection-grid">
+                <div class="selectable-game" data-game-id="wuthering_waves">
+                    <img src="../../resources/icons/wuthering-waves.png" alt="Wuthering Waves" onerror="this.src='../../resources/icons/default-game.png'">
+                    <span>Wuthering Waves</span>
+                    <div class="game-status-indicator"></div>
+                </div>
+                <div class="selectable-game" data-game-id="honkai_starrail">
+                    <img src="../../resources/icons/honkai-starrail.png" alt="Honkai: Star Rail" onerror="this.src='../../resources/icons/default-game.png'">
+                    <span>Honkai: Star Rail</span>
+                    <div class="game-status-indicator"></div>
+                </div>
+                <div class="selectable-game disabled" data-game-id="zenless_zone_zero">
+                    <img src="../../resources/icons/zenless-zone-zero.png" alt="Zenless Zone Zero" onerror="this.src='../../resources/icons/default-game.png'">
+                    <span>Zenless Zone Zero</span>
+                    <div class="game-status-text">Not yet supported</div>
+                </div>
+                <div class="selectable-game disabled" data-game-id="genshin_impact">
+                    <img src="../../resources/icons/genshin-impact.png" alt="Genshin Impact" onerror="this.src='../../resources/icons/default-game.png'">
+                    <span>Genshin Impact</span>
+                    <div class="game-status-text">Not yet supported</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

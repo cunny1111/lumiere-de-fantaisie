@@ -1,0 +1,104 @@
+{
+  "name": "lumiere-de-fantaisie",
+  "version": "0.1.0",
+  "description": " A game launcher for gacha games.",
+  "main": "main.js",
+  "homepage": ".",
+  "author": {
+    "name": "Miyuki"
+  },
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "build-win": "electron-builder --win",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --publish=never",
+    "postinstall": "electron-builder install-app-deps",
+    "test": "jest",
+    "lint": "eslint src/"
+  },
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4",
+    "eslint": "^8.50.0",
+    "jest": "^29.7.0",
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.0.1"
+  },
+  "dependencies": {
+    "electron-updater": "^6.1.4",
+    "electron-store": "^8.1.0",
+    "electron-log": "^4.4.8",
+    "electron-dl": "^3.5.0",
+    "axios": "^1.5.0",
+    "registry-js": "^1.15.0",
+    "adm-zip": "^0.5.10",
+    "fs-extra": "^11.1.1",
+    "path": "^0.12.7",
+    "glob": "^10.3.4",
+    "semver": "^7.5.4",
+    "node-fetch": "^3.3.2",
+    "cheerio": "^1.0.0-rc.12",
+    "better-sqlite3": "^11.10.0",
+    "express": "^4.18.2"
+  },
+  "build": {
+    "productName": "Lumière de Fantaisie",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "resources/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "resources",
+        "to": "resources",
+        "filter": ["**/*"]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "resources/icons/icon.ico",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Lumière de Fantaisie"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "cunny1111",
+      "repo": "lumiere-de-fantaisie"
+    }
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": [
+    "electron",
+    "game-launcher",
+    "gacha",
+    "mod-loader",
+    "auto-updater",
+    "windows"
+  ]
+}

@@ -1,0 +1,1404 @@
+/* Import font kiểu Pháp đẹp */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap');
+
+/* Import font đẹp hơn */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap');
+
+/* Import Google Fonts - Playfair Display cho tiêu đề kiểu Pháp */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a0d2e 0%, #2d1b4e 50%, #4a2c7a 100%);
+    color: #ffffff;
+    overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.app-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Title Bar */
+.title-bar {
+    height: 32px;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    -webkit-app-region: drag;
+    border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+    /* Chặn context menu cho title bar */
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Đảm bảo title bar không có context menu */
+.title-bar, .title-bar * {
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: auto;
+}
+
+.title-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.app-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.app-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: #e6d7ff;
+}
+
+.title-bar-controls {
+    display: flex;
+    gap: 4px;
+    -webkit-app-region: no-drag;
+}
+
+.control-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    transition: background 0.2s ease;
+}
+
+.control-btn:hover {
+    background: rgba(138, 43, 226, 0.3);
+}
+
+.close-btn:hover {
+    background: #683f83;
+}
+
+/* Welcome Screen */
+.welcome-screen {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.welcome-content {
+    text-align: center;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* Styling cho tiêu đề welcome */
+.welcome-title {
+    font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(135deg, #ffffff 0%, #e6d7ff 50%, #d4b3ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.welcome-subtitle {
+    font-family: 'Crimson Text', 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #c9b3e6;
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    font-style: italic;
+}
+
+.game-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.game-card {
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 200px;
+    height: 120px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(156, 89, 182, 0.185);
+}
+
+.game-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.game-card:hover img {
+    filter: brightness(0.4);
+}
+
+.game-card .game-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+}
+
+.game-card:hover .game-overlay {
+    opacity: 1;
+}
+
+.game-card .game-name {
+    font-family: 'Poppins', 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.5px;
+    margin: 0;
+    padding: 0;
+}
+
+.game-card .game-status {
+    display: none; /* Ẩn hoàn toàn chữ "installed" */
+}
+
+.add-game-card {
+    border: 2px dashed rgba(138, 43, 226, 0.4);
+    background: rgba(138, 43, 226, 0.05);
+    width: 200px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.add-game-card:hover {
+    border-color: rgba(138, 43, 226, 0.6);
+    background: rgba(138, 43, 226, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(156, 89, 182, 0.185);
+}
+
+.add-game-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(138, 43, 226, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-size: 20px;
+    color: #b19cd9;
+    transition: all 0.3s ease;
+}
+
+.add-game-card:hover .add-game-icon {
+    background: rgba(138, 43, 226, 0.3);
+    color: #d1c4e9;
+    transform: scale(1.1);
+}
+
+.add-game-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #b19cd9;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .game-grid {
+        gap: 15px;
+    }
+    
+    .game-card, .add-game-card {
+        width: 180px;
+        height: 108px;
+    }
+    
+    .game-card .game-name {
+        font-size: 14px;
+    }
+    
+    .game-card .game-status {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+}
+
+/* Game Screen */
+.game-screen {
+    flex: 1;
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 80px;
+    background: rgba(0, 0, 0, 0.4);
+    border-right: 1px solid rgba(138, 43, 226, 0.3);
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+}
+
+.sidebar-games {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 16px;
+}
+
+.sidebar-game-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    object-fit: cover; /* Thêm để resize ảnh đúng cách */
+    object-position: center; /* Căn giữa ảnh */
+}
+
+.sidebar-game-icon:hover {
+    border-color: #9b59b6;
+    transform: scale(1.1);
+}
+
+.sidebar-game-icon.active {
+    border-color: #683f83;
+    box-shadow: 0 0 20px rgba(154, 60, 231, 0.3);
+}
+
+.sidebar-add-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(138, 43, 226, 0.2);
+    border: 2px dashed rgba(138, 43, 226, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #9b59b6;
+    font-size: 20px;
+}
+
+.sidebar-add-btn:hover {
+    background: rgba(138, 43, 226, 0.3);
+    border-color: #9b59b6;
+}
+
+.sidebar-footer {
+    padding: 0 16px;
+}
+
+.settings-btn {
+    width: 48px;
+    height: 48px;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.settings-btn:hover {
+    color: #9b59b6;
+    background: rgba(155, 89, 182, 0.1);
+}
+
+/* Game Content */
+.game-content {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(1px) brightness(0.3);
+    z-index: 1;
+    transition: background-image 0.5s ease;
+}
+
+/* Background images cho từng game */
+.game-background.genshin {
+    background-image: url('../assets/backgrounds/genshin-bg.jpg');
+}
+
+.game-background.honkai_starrail {
+    background-image: url('../assets/backgrounds/honkai-bg.jpg');
+}
+
+.game-background.zenless_zone_zero {
+    background-image: url('../assets/backgrounds/zenless-bg.jpg');
+}
+
+.game-background.wuthering_waves {
+    background-image: url('../assets/backgrounds/wuthering-bg.jpg');
+}
+
+/* Fallback background nếu không có image */
+.game-background:not(.genshin):not(.honkai_starrail):not(.zenless_zone_zero):not(.wuthering_waves) {
+    background: linear-gradient(135deg, #1a0d2e 0%, #2d1b4e 50%, #4a2c7a 100%);
+}
+
+.game-overlay {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(26, 13, 46, 0.8) 0%,
+        rgba(45, 27, 78, 0.6) 50%,
+        rgba(74, 44, 122, 0.4) 100%
+    );
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.game-info {
+    flex: 1;
+}
+
+.game-header {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.game-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    border: 3px solid rgba(155, 89, 182, 0.5);
+    object-fit: cover; /* Thêm để resize ảnh đúng cách */
+    object-position: center; /* Căn giữa ảnh */
+}
+
+.game-meta {
+    flex: 1;
+}
+
+.game-title {
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 12px;
+    background: linear-gradient(45deg, #9b59b6, #683f83);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.game-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.game-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 24px;
+    max-width: 600px;
+}
+
+.game-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+    max-width: 500px;
+}
+
+.stat {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(138, 43, 226, 0.2);
+}
+
+.stat-label {
+    display: block;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #9b59b6, #8e44ad);
+    color: white;
+    border: 2px solid transparent;
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(155, 89, 182, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(138, 43, 226, 0.3);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: rgba(138, 43, 226, 0.2);
+    border-color: #9b59b6;
+}
+
+.btn-warning {
+    background: linear-gradient(45deg, #f39c12, #e67e22);
+    color: white;
+}
+
+.btn-danger {
+    background: linear-gradient(45deg, #683f83, #c0392b);
+    color: white;
+}
+
+/* Game News */
+.game-news {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid rgba(138, 43, 226, 0.2);
+}
+
+.game-news h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #b19cd9;
+}
+
+.news-content {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 13, 46, 0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-content i {
+    font-size: 48px;
+    margin-bottom: 16px;
+    color: #9b59b6;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(155, 89, 182, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(155, 89, 182, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .welcome-title {
+        font-size: 36px;
+    }
+    
+    .welcome-subtitle {
+        font-size: 18px;
+    }
+    
+    .game-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 16px;
+    }
+    
+    .game-overlay {
+        padding: 20px;
+    }
+    
+    .game-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .game-title {
+        font-size: 28px;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #2d1b4e 0%, #4a2c7a 100%);
+    margin: 5% auto;
+    padding: 0;
+    border: 1px solid rgba(138, 43, 226, 0.3);
+    border-radius: 12px;
+    width: 500px;
+    max-width: 90%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #e6d7ff;
+    font-size: 24px;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: #9b59b6;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: rgba(155, 89, 182, 0.2);
+    color: #683f83;
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.setting-group {
+    margin-bottom: 25px;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #b19cd9;
+    font-weight: 500;
+}
+
+.setting-group select,
+.setting-group input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(138, 43, 226, 0.3);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.setting-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #9b59b6;
+}
+
+.path-input {
+    display: flex;
+    gap: 10px;
+}
+
+.path-input input {
+    flex: 1;
+}
+
+.path-input button {
+    padding: 10px 20px;
+    background: rgba(138, 43, 226, 0.2);
+    border: 1px solid rgba(138, 43, 226, 0.5);
+    border-radius: 8px;
+    color: #9b59b6;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.path-input button:hover {
+    background: rgba(138, 43, 226, 0.3);
+}
+
+.modal-footer {
+    padding: 20px 30px;
+    border-top: 1px solid rgba(138, 43, 226, 0.3);
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* Add Game Modal Styles */
+.game-selection-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.selectable-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.selectable-game:hover:not(.disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-color);
+}
+
+.selectable-game.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.selectable-game.disabled img {
+    filter: grayscale(100%);
+}
+
+.selectable-game.added {
+    border-color: #4CAF50;
+    background: rgba(76, 175, 80, 0.2);
+}
+
+.selectable-game img {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.selectable-game span {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.game-status-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid #666;
+    transition: all 0.3s ease;
+}
+
+.selectable-game.added .game-status-indicator {
+    background: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.selectable-game.added .game-status-indicator::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.game-status-text {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Settings Modal Styles */
+.settings-modal {
+    width: 800px;
+    max-width: 90vw;
+    height: 550px;
+    max-height: 80vh;
+}
+
+.settings-modal .modal-header {
+    padding: 15px 25px;
+    border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+}
+
+.settings-modal .modal-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.settings-body {
+    display: flex;
+    padding: 0;
+    height: 450px;
+}
+
+.settings-sidebar {
+    width: 180px;
+    background: rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(138, 43, 226, 0.3);
+    padding: 15px 0;
+}
+
+.settings-tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    font-size: 14px;
+}
+
+.settings-tab:hover {
+    background: rgba(138, 43, 226, 0.1);
+}
+
+.settings-tab.active {
+    background: rgba(138, 43, 226, 0.2);
+    border-left-color: #9b59b6;
+    color: #ffffff;
+}
+
+.settings-tab i {
+    width: 16px;
+    height: 16px;
+    font-size: 14px;
+}
+
+.settings-content {
+    flex: 1;
+    padding: 25px;
+    overflow-y: auto;
+}
+
+.settings-panel {
+    display: none;
+}
+
+.settings-panel.active {
+    display: block;
+}
+
+.settings-panel h3 {
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.setting-group {
+    margin-bottom: 20px;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #b19cd9;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.checkbox-label {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-bottom: 0 !important;
+    font-size: 14px;
+}
+
+.checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 18px;
+    height: 18px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(138, 43, 226, 0.5);
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark {
+    background: #9b59b6;
+    border-color: #9b59b6;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.setting-group select {
+    width: 100%;
+    padding: 10px 12px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(138, 43, 226, 0.3);
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.setting-group select:focus {
+    outline: none;
+    border-color: #9b59b6;
+    box-shadow: 0 0 0 2px rgba(155, 89, 182, 0.2);
+}
+
+.setting-group select:hover {
+    border-color: rgba(138, 43, 226, 0.5);
+}
+
+/* About Panel Styles */
+.about-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.app-info {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border: 1px solid rgba(138, 43, 226, 0.2);
+}
+
+.app-icon-large {
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+}
+
+.app-details h4 {
+    margin: 0 0 6px 0;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.app-details .version {
+    margin: 0 0 6px 0;
+    color: #9b59b6;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.app-details .description {
+    margin: 0;
+    color: #b19cd9;
+    font-size: 13px;
+}
+
+.about-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.about-actions .btn {
+    padding: 10px 15px;
+    font-size: 13px;
+}
+
+/* Icon classes (you can replace with actual icon font or SVGs) */
+.icon-settings::before { content: '⚙️'; }
+.icon-info::before { content: 'ℹ️'; }
+.icon-history::before { content: '📋'; }
+.icon-download::before { content: '⬇️'; }
+.icon-document::before { content: '📄'; }
+.icon-shield::before { content: '🛡️'; }
+
+.btn.btn-icon {
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.btn.btn-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn.btn-icon i {
+    font-size: 16px;
+}
+
+/* Tooltip for icon buttons */
+.btn.btn-icon[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+.btn.disabled,
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.btn.disabled:hover,
+.btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Status badge cho not-installed */
+.game-status-badge.not-installed {
+    background: rgba(231, 76, 60, 0.2);
+    color: #bd4141;
+}
+
+/* Nút Play cho trường hợp not-installed */
+.btn.not-installed-btn {
+    background: rgba(108, 117, 125, 0.3) !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    border-color: rgba(108, 117, 125, 0.2) !important;
+    opacity: 0.7;
+}
+
+.btn.not-installed-btn:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Thêm vào cuối file hoặc sau phần .about-actions */
+.btn-outline {
+    background: transparent;
+    border: 2px solid rgba(138, 43, 226, 0.5);
+    color: #e6d7ff;
+}
+
+.btn-outline:hover:not(.disabled) {
+    background: rgba(138, 43, 226, 0.2);
+    border-color: #9b59b6;
+    transform: translateY(-2px);
+}
+
+.btn-outline.disabled {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.4);
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.btn-outline.disabled:hover {
+    transform: none;
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Tooltip cho nút disabled */
+.btn.disabled[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn.disabled[data-tooltip]:hover::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.9);
+    z-index: 1001;
+}
+
+.btn.disabled[data-tooltip] {
+    position: relative;
+}
+
+/* ... existing code ... */
+
+/* ===== ANIMATIONS ===== */
+
+/* 1. Hiệu ứng khởi động launcher */
+@keyframes appStartup {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes welcomeFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 2. Hiệu ứng chuyển cảnh welcome -> game screen - chỉ fade, không vuốt sang bên */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* 3. Hiệu ứng modal mở/đóng */
+@keyframes modalFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes modalFadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes overlayFadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes overlayFadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* 4. Hiệu ứng chuyển background game */
+@keyframes backgroundFade {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ===== APPLY ANIMATIONS ===== */
+
+/* Khởi động launcher - chỉ áp dụng cho welcome-content, không cho title-bar */
+.welcome-content {
+    animation: welcomeFadeIn 0.8s ease-out;
+}
+
+/* Chuyển cảnh welcome -> game */
+.welcome-screen.fade-out {
+    animation: fadeOut 0.4s ease-in-out forwards;
+}
+
+.game-screen.fade-in {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Modal animations */
+.modal {
+    /* ... existing code ... */
+}
+
+.modal.show {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    animation: overlayFadeIn 0.3s ease-out;
+}
+
+.modal.show .modal-content {
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+.modal.hide {
+    animation: overlayFadeOut 0.3s ease-out;
+}
+
+.modal.hide .modal-content {
+    animation: modalFadeOut 0.3s ease-out;
+}
+
+/* Background transition - chỉ fade, không scale */
+.game-background {
+    /* ... existing code ... */
+    transition: opacity 0.6s ease-in-out;
+}
+
+.game-background.changing {
+    opacity: 0;
+}
+
+/* Sidebar game icon transitions */
+.sidebar-game-icon {
+    /* ... existing code ... */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-game-icon.switching {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+/* Game info fade in khi chuyển game */
+.game-info {
+    transition: opacity 0.4s ease-in-out;
+}
+
+.game-info.changing {
+    opacity: 0;
+}
+
+/* Smooth transitions cho các elements */
+.game-title, .game-description, .game-stats {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* ... existing code ... */
